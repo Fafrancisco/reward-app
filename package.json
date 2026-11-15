@@ -1,0 +1,46 @@
+{
+  "name": "reward-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fafrancisco/reward-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fafrancisco/reward-app/issues"
+  },
+  "homepage": "https://github.com/Fafrancisco/reward-app#readme",
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@supabase/supabase-js": "^2.119.0",
+    "expo": "~58.0.25",
+    "expo-crypto": "~58.0.8",
+    "expo-secure-store": "~58.0.3",
+    "expo-updates": "~58.0.22",
+    "expo-web-browser": "~58.0.8",
+    "fast-text-encoding": "^1.0.6",
+    "react": "19.3.0",
+    "react-native": "^0.88.1",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-url-polyfill": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3"
+  },
+  "private": true
+}

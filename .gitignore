@@ -1,0 +1,11 @@
+node_modules/
+.expo/
+android/
+ios/
+.env*
+!.env.example
+*.keystore
+*.jks
+*.apk
+coverage/
+supabase/.temp/

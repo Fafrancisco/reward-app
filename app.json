@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Família em Pontos",
+    "slug": "familia-em-pontos",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "familiaempontos",
+    "android": {
+      "package": "pt.exemplo.familiaempontos"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-web-browser"
+    ]
+  }
+}

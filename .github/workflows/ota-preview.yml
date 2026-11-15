@@ -1,0 +1,50 @@
+name: Expo OTA preview
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Descrição curta da atualização
+        required: true
+        default: Atualização de ensaio
+        type: string
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+  publish:
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Publish to the preview channel
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_PUBLIC_EAS_PROJECT_ID: ${{ vars.EXPO_PUBLIC_EAS_PROJECT_ID }}
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+          UPDATE_MESSAGE: "${{ inputs.message || format('Commit {0}: {1}', github.sha, github.event.head_commit.message) }}"
+        run: |
+          test -n "$EXPO_TOKEN" || { echo "Configure the EXPO_TOKEN Actions secret."; exit 1; }
+          test -n "$EXPO_PUBLIC_EAS_PROJECT_ID" || { echo "Configure the EXPO_PUBLIC_EAS_PROJECT_ID Actions variable."; exit 1; }
+          node scripts/check-ota-runtime-version.mjs
+          npx eas-cli update --channel preview --environment preview --message "$UPDATE_MESSAGE" --non-interactive
