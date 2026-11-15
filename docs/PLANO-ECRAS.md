@@ -16,6 +16,7 @@ As imagens em `design/` são referências visuais. A versão local usa dados fic
 - [x] Criar ecrã próprio para gerar, partilhar e revogar convite no modo partilhado.
 - [ ] Validar expiração, revogação e uso real com contas de teste.
 - [~] Apresentar família, crianças e nomes dos adultos; definir regras de papéis e remoção antes de implementar remoções.
+- [x] Disponibilizar na entrada o mesmo OAuth Google para criar conta no primeiro acesso e iniciar sessão nos seguintes.
 - [ ] Configurar Google/Supabase nas contas próprias e testar sessão e convite em dois dispositivos.
 
 ## 3. Crianças e início
@@ -52,8 +53,8 @@ As imagens em `design/` são referências visuais. A versão local usa dados fic
 - [x] Preparar criações idempotentes de famílias, crianças, comportamentos e recompensas, com recuperação de pedidos pendentes e testes PostgreSQL locais.
 - [ ] Validar a recuperação de criações com rede instável em Supabase real e no Android.
 - [ ] Rever autenticação, RLS, convites, concorrência e segurança num projeto Supabase de teste.
-- [~] Preparar GitHub Actions para APK assinado e OTA no canal preview; falta configurar UUID/token Expo e keystore de release nas contas próprias.
-- [~] Gerar e instalar APK autónomo local ARM64 de ensaio com assinatura debug. Falta instalar no telemóvel e validar a APK oficial com assinatura e OTA EAS.
+- [x] Preparar GitHub Actions para APK assinado e OTA no canal preview; primeira execução oficial gerou artefacto e publicação OTA com sucesso.
+- [x] Gerar, instalar e validar visualmente no telemóvel a APK oficial assinada. O fluxo Google ainda depende da configuração Google/Supabase indicada acima.
 - [ ] Testar família partilhada em dois Androids, acessibilidade e rede instável.
 - [ ] Definir relatórios, alertas, offline e retenção antes de os implementar.
 
