@@ -10,6 +10,8 @@ create table public.rewards (id uuid primary key default gen_random_uuid(), fami
 create table public.reward_children (family_id uuid not null, reward_id uuid not null, child_id uuid not null, primary key(reward_id,child_id), foreign key(family_id,reward_id) references public.rewards(family_id,id) on delete cascade, foreign key(family_id,child_id) references public.children(family_id,id));
 create table public.entries (id uuid primary key default gen_random_uuid(), family_id uuid not null, child_id uuid not null, actor uuid not null references auth.users, description text not null, points integer not null check(points <> 0), created_at timestamptz not null default now(), command_id uuid not null, command jsonb not null, corrects uuid references public.entries(id), unique(family_id,command_id), unique(corrects), foreign key(family_id,child_id) references public.children(family_id,id));
 create table private.invites (token_hash bytea primary key, family_id uuid not null references public.families, created_by uuid not null references auth.users, expires_at timestamptz not null, used_at timestamptz, revoked_at timestamptz);
+alter table private.invites enable row level security;
+revoke all on private.invites from public, anon, authenticated;
 create function private.is_member(fid uuid) returns boolean language sql stable security definer set search_path = '' as $$ select exists(select 1 from public.members where family_id=fid and user_id=auth.uid()) $$;
 revoke all on function private.is_member(uuid) from public, anon;
 grant usage on schema private to authenticated;

@@ -6,6 +6,10 @@ A demonstração local usa apenas dados fictícios e não os envia para a rede. 
 
 A aplicação inclui o fluxo OAuth Google: o primeiro acesso cria a conta Supabase e os seguintes iniciam sessão com a mesma conta. O botão de entrada serve para ambos; não é necessária uma palavra-passe separada. O funcionamento no APK depende de configurar as contas Google Cloud e Supabase indicadas abaixo e de compilar a app com o URL e a chave pública do projeto.
 
+## Configuração cloud de desenvolvimento
+
+Foi criado o projeto Supabase `reward-app-dev` no plano Free, em Central EU (Frankfurt), na organização existente. As quatro migrações abaixo foram aplicadas numa transação e verificadas: as nove tabelas estão com RLS ativo, as oito funções de domínio existem e o schema `private` não tem acesso para `anon`. A palavra-passe da base de dados foi gerada aleatoriamente e guardada no Porta-chaves macOS, serviço `Reward App Supabase DB`, conta `reward-app`; não está no repositório. O fornecedor Google, os redirect URLs, as variáveis públicas da app e a ligação/deploy Vercel ainda estão por configurar.
+
 A camada de família partilhada e a API ainda não foram validadas num projeto Supabase/Vercel real nem num APK instalado. Os testes locais usam um PostgreSQL isolado e um esquema Auth simulado: verificam isolamento, convites, idempotência, saldo, permissões e resgates concorrentes, mas não substituem testes com Supabase, Google, Vercel e dispositivos reais. Não utilizar dados pessoais antes de completar as validações abaixo e rever a segurança. As credenciais Google e os parâmetros de projeto Supabase continuam dependentes da configuração nas contas correspondentes.
 
 ## Regras confirmadas e hipóteses

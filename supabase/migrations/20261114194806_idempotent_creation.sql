@@ -7,6 +7,7 @@ create table private.creation_requests (
  result_id uuid not null,
  primary key(actor, request_id)
 );
+alter table private.creation_requests enable row level security;
 revoke all on private.creation_requests from public, anon, authenticated;
 
 create function public.create_once(kind text, fid uuid, payload jsonb, request_id uuid)
