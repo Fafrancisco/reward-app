@@ -11,6 +11,12 @@
     "plugins": [
       "expo-secure-store",
       "expo-web-browser"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c9f2577e-4696-440b-9bb2-15ae64deb49c"
+      }
+    },
+    "owner": "fafrancisco"
   }
 }
